@@ -81,10 +81,10 @@
   const stopTimer = () => {
     const stopTime = Date.now() - startTime;
 
-    if (guessCount === randomNumber)  {
-      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds! It took you ' + guessCount + ' guesses.';
+    if (guessCount === maxGuess)  {
+      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds!';
     }
     else {
-      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds!';
+      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds! It took you ' + guessCount + ' guesses.';
     }
   };
