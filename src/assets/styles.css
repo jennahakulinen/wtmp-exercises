@@ -10,6 +10,8 @@ body {
   font-family: sans-serif;
 }
 
+/* TASK 2 */
+/*
 body {
   background: linear-gradient(#f794a4, #fdd6bd);
 }
@@ -96,4 +98,17 @@ button {
 .lowOrHi,
 .time {
   margin-bottom: 10px;
+} */
+
+/* TASK 3 */
+
+.container {
+  height: 400px;
+  width: 400px;
+  padding: 10px;
+  border: 2px dotted red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
