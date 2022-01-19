@@ -2,18 +2,54 @@
 <html>
   <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/lounari.css">
+    <script src="https://kit.fontawesome.com/8730c9b44a.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <main>
-      <div class="container">
-        <div class="menu"></div>
+      <nav>
+          <div class="toggle">
+            <a href="#"><i class="fas fa-bars"></i></a>
+          </div>
+          <ul class="nav-list">
+            <li class="nav-link"><a href="#">Etusivu</a></li>
+            <li class="nav-link"><a href="#">Ruokalistat</a></li>
+            <li class="nav-link"><a href="#">Ravintolat</a></li>
+            <li class="na-link"><a href="#">Yhteystiedot</a></li>
+            <li class="search">
+              <input class="push" type="search" placeholder="Hae ravintolaa nimellä...">
+            </li>
+          </ul>
+      </nav>
+
+      <div class="grid-container">
+
+        <header class="banner bgimg">
+          <div class="banner-bg">
+            <h3>Lounari</h3>
+            <p>Missä tänään syötäisiin?</p>
+          </div>
+        </header>
+
+        <section class="description">
+          <p>Missä tänään syötäisiin? Tuttu tarina ennen lounahetkeä.</p>
+          <p>Palvelu etsii lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen lounalistan.</p>
+          <p> Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin klikkaamalla ravintolan logoa.</p>
+        </section>
+
+        <article class="menu menu-area left"><h4>Ravintola 1</h4></article>
+        <article class="menu menu-area right"><h4>Ravintola 2</h4></article>
+
         <div class="buttons">
           <button class="lang">Change Language</button>
           <button class="sort">Sort Menu</button>
           <button class="random">Random</button>
         </div>
+
       </div>
     </main>
 

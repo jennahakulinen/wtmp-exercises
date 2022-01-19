@@ -1,6 +1,14 @@
 
   'use strict';
 
+  //Navigaatio
+  const toggleBtn = document.querySelector('.toggle');
+  const naviList = document.querySelector('.nav-list');
+
+  toggleBtn.addEventListener('click', () => {
+      naviList.classList.toggle('active');
+  });
+
   import LunchMenu from './assets/LunchMenu.json';
   // Test
   console.log('lunch menu object', LunchMenu);
