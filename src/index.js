@@ -1,77 +1,82 @@
-// Best approach would be halving this is called binary search.
-// No matter which number from 1 to 100 the computer has selected,
-// you should be able to fin the number in at most 7 guesses with this
-// technique (log2(array_size) = log2(100) = 6,6 ≈ 7).
+// B
+import fazerMenu from './assets/fazerLunch.json';
+// A
 
-// const binary = (val, arr) => {
-//   let lower = 0;
-//   let upper = arr.lenght -1;
+const menu = [
+  {name: 'Lingonberry jam', price: 4.00},
+  {name: 'Mushroom and bean casserole', price: 5.50},
+  {name: 'Chili-flavoured wheat', price: 3.00},
+  {name: 'Vegetarian soup', price: 4.80},
+  {name: 'Pureed root vegetable soup with smoked cheese', price: 8.00}
+];
 
-//   while (lower<= upper) {
-//     const middle = lower + Math.floor((upper - lower)/ 2);
+// A 1.
 
-//     if (val === arr[middle]) {
-//       return middle;
-//     }
-//     if (val < arr[middle]) {
-//       upper = middle -1;
-//     } else {
-//       lower = middle +1;
-//     }
-//   }
-// };
+menu.forEach(meal => {
+  const regexp = /^[A-ZÖÄÅ]{1}[a-zöäå,A-ZÖÄÅ/0-9()-\s]{4,64}$/;
+  const test = regexp.test(meal.name);
 
-import {StartGame, checkGuess, resetGame} from '../src/modules/numberGuess';
+  if(!test) {
+    console.log(meal.name + 'is not valid');
+  } else {
+    console.log('All names are valid');
+  }
+});
 
-StartGame();
+// A 2.
 
+  const sortedPrice = menu.sort((a, b) => {
+    return b.price - a.price;
+  });
+  console.log('Sorted meals', sortedPrice);
 
-const testGamePlay = () => {
-  let guessCounter = 0;
-  let myGuess = 50;
-  let gameOver = false;
-  while(!gameOver){
-    //console.log(myGuess);
-    let correctGuess = checkGuess(myGuess);
-    guessCounter ++;
-    if(correctGuess === 0){
-      gameOver = true;
-      resetGame();
-    }else if (correctGuess < 0){
-      //myGuess += 25; //too low, ask 75
-      myGuess++;
-    }else{
-      //myGuess -= 25; //too high, ask 25
-      myGuess--;
+// A 3.
+
+const filter = menu.filter(f => f.price < 5);
+console.log('Filtered meals', filter);
+
+//A 4.
+
+const raisedPrice = menu.map(n => (n.price * 1.15).toFixed(2));
+console.log('Raised prices', raisedPrice);
+
+// A 5.
+
+const total = menu.reduce((a, b) => ({price: a.price + b.price}));
+console.log('Whole menu total', total);
+
+// A funcion calls
+
+sortedPrice();
+filter();
+raisedPrice();
+total();
+
+// B
+
+const vegan = [];
+
+const parseFazerMenu = (menu) => {
+  const setMenus = menu.SetMenus;
+  for (const setMenu of setMenus) {
+    const meals = setMenu.Meals;
+    for (const meal of meals) {
+      const name = meal.Name;
+      const diets = meal.Diets;
+      for (const diet of diets) {
+        if (diet === 'Veg') {
+          vegan.push(name);
+        }
+      }
     }
   }
-  return guessCounter;
-};
-//testGamePlay();
 
-let DONE = RIGHT = 0, HIGH = 1, LOW = -1;
-
-const compGuess = (low, high) =>{
-  let g = Math.floor((low + high) / 2);
-  let result = getResult(g);
-  switch (result){
-    case RIGHT:
-      return DONE;
-    case LOW:
-      return compGuess(g + 1, high);
-    case HIGH:
-      return compGuess(low, g - 1);
-  }
 };
 
+parseFazerMenu(fazerMenu.LunchMenus[0]);
+console.log('Vegan dishes', vegan);
 
-let guessCounts = [];
-for(let i=0; i<10; i++){
-  guessCounts.push(testGamePlay());
-}
-console.log('guess counts', guessCounts);
-//guessCounts.length; arrayn koko
+// B function call
 
-let maxGuessCount = Math.max(...guessCounts);
-console.log(maxGuessCount);
+
 
