@@ -7,6 +7,9 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/lounari.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;800&display=swap" rel="stylesheet">
   </head>
   <body>
       <nav>
@@ -34,21 +37,20 @@
 
         <header class="banner bgimg">
           <div class="banner-bg">
-            <h3>Lounari</h3>
-            <p>Missä tänään syötäisiin?</p>
+            <h1 class="banner-h1">Lounari.</h1>
+            <p class="banner-p">Missä tänään syötäisiin?</p>
           </div>
         </header>
 
         <section class="description">
           <p>Missä tänään syötäisiin? Tuttu tarina ennen lounahetkeä.</p>
           <p>Palvelu etsii lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen lounalistan.</p>
-          <p> Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin klikkaamalla ravintolan logoa.</p>
+          <p>Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin klikkaamalla ravintolan logoa.</p>
         </section>
       </div>
 
         <div class="grid-menu">
-          <article class=" menu-area">
-            <!-- <h4>Ravintola 1</h4> -->
+          <article class="menu-area">
             <div class="menu-logo">
               <img src="assets/img/Sodexo_logo.jpg" alt="Sodexo logo">
             </div>
@@ -61,12 +63,25 @@
               </div>
           </div>
           </article>
+
           <article class="menu-area">
             <div class="menu-logo">
               <img src="assets/img/Sodexo_logo.jpg" alt="Sodexo logo">
             </div>
-            <div class="menu"><h4>Metropolia Karamalmi</h4></div>
+
+            <div class="menu">
+              <div class="location">
+                <h4 class="location-h4">Metropolia Myyrmäki</h4>
+                <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 48 60" style="enable-background:new 0 0 48 48;" xml:space="preserve"><g><path d="M9,18c0,7.98,13.63,25.85,14.21,26.61C23.4,44.85,23.69,45,24,45s0.6-0.15,0.79-0.39C25.37,43.85,39,25.98,39,18   c0-8.27-6.73-15-15-15S9,9.73,9,18z M37,18c0,6.27-10.06,20.36-13,24.33C21.06,38.36,11,24.27,11,18c0-7.17,5.83-13,13-13   S37,10.83,37,18z"/><path d="M14,18c0,5.51,4.49,10,10,10s10-4.49,10-10S29.51,8,24,8S14,12.49,14,18z M32,18c0,4.41-3.59,8-8,8s-8-3.59-8-8s3.59-8,8-8   S32,13.59,32,18z"/></g></svg>
+                <p class="location-p">100 m</p>
+              </div>
+          </div>
           </article>
+
+          <div class="add-restaurant menu-area">
+            <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 128 160" style="enable-background:new 0 0 128 128;" xml:space="preserve"><g><path d="M64,1L64,1C29.2,1,1,29.2,1,64s28.2,63,63,63h0c34.8,0,63-28.2,63-63S98.8,1,64,1z M94,69H69v25H59V69H34V59h25V34h10v25   h25V69z"/></g></svg>
+            <p>Lisää ravintola</p>
+          </div>
         </div>
 
         <!-- <div class="buttons">
