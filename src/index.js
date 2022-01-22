@@ -1,90 +1,77 @@
-  const min = 1;
-  const max  = 100;
-  const maxGuess = 10;
-  let startTime = Date.now();
+// Best approach would be halving this is called binary search.
+// No matter which number from 1 to 100 the computer has selected,
+// you should be able to fin the number in at most 7 guesses with this
+// technique (log2(array_size) = log2(100) = 6,6 ≈ 7).
 
-  let randomNumber = Math.floor(Math.random() * max) + min;
-  const guesses = document.querySelector('.guesses');
-  const lastResult = document.querySelector('.lastResult');
-  const lowOrHi = document.querySelector('.lowOrHi');
-  const guessSubmit = document.querySelector('.guessSubmit');
-  const guessField = document.querySelector('.guessField');
-  const timeField = document.querySelector('.time');
+// const binary = (val, arr) => {
+//   let lower = 0;
+//   let upper = arr.lenght -1;
 
-  let guessCount = 1;
-  let resetButton;
+//   while (lower<= upper) {
+//     const middle = lower + Math.floor((upper - lower)/ 2);
 
-  const checkGuess = () => {
-    const userGuess = Number(guessField.value);
-    if (guessCount === 1) {
-      guesses.textContent = 'Previous guesses: ';
+//     if (val === arr[middle]) {
+//       return middle;
+//     }
+//     if (val < arr[middle]) {
+//       upper = middle -1;
+//     } else {
+//       lower = middle +1;
+//     }
+//   }
+// };
+
+import {StartGame, checkGuess, resetGame} from '../src/modules/numberGuess';
+
+StartGame();
+
+
+const testGamePlay = () => {
+  let guessCounter = 0;
+  let myGuess = 50;
+  let gameOver = false;
+  while(!gameOver){
+    //console.log(myGuess);
+    let correctGuess = checkGuess(myGuess);
+    guessCounter ++;
+    if(correctGuess === 0){
+      gameOver = true;
+      resetGame();
+    }else if (correctGuess < 0){
+      //myGuess += 25; //too low, ask 75
+      myGuess++;
+    }else{
+      //myGuess -= 25; //too high, ask 25
+      myGuess--;
     }
+  }
+  return guessCounter;
+};
+//testGamePlay();
 
-    guesses.textContent += userGuess + ' ';
+let DONE = RIGHT = 0, HIGH = 1, LOW = -1;
 
-    if (userGuess === randomNumber) {
-      lastResult.textContent = 'Congratulations! You got it right!';
-      lastResult.style.backgroundColor = 'green';
-      lowOrHi.textContent = '';
-      stopTimer();
-      setGameOver();
-    } else if (guessCount === maxGuess) {
-      lastResult.textContent = '!!!GAME OVER!!!';
-      lowOrHi.textContent = '';
-      stopTimer();
-      setGameOver();
-    } else {
-      lastResult.textContent = 'Wrong!';
-      lastResult.style.backgroundColor = 'red';
-      if(userGuess < randomNumber) {
-        lowOrHi.textContent = 'Last guess was too low!' ;
-      } else if(userGuess > randomNumber) {
-        lowOrHi.textContent = 'Last guess was too high!';
-      }
-    }
+const compGuess = (low, high) =>{
+  let g = Math.floor((low + high) / 2);
+  let result = getResult(g);
+  switch (result){
+    case RIGHT:
+      return DONE;
+    case LOW:
+      return compGuess(g + 1, high);
+    case HIGH:
+      return compGuess(low, g - 1);
+  }
+};
 
-    guessCount++;
-    guessField.value = '';
-    guessField.focus();
-  };
 
-  guessSubmit.addEventListener('click', checkGuess);
+let guessCounts = [];
+for(let i=0; i<10; i++){
+  guessCounts.push(testGamePlay());
+}
+console.log('guess counts', guessCounts);
+//guessCounts.length; arrayn koko
 
-  const setGameOver = () => {
-    guessField.disabled = true;
-    guessSubmit.disabled = true;
-    resetButton = document.createElement('button');
-    resetButton.textContent = 'Start new game';
-    document.body.appendChild(resetButton);
-    resetButton.addEventListener('click', resetGame);
-  };
+let maxGuessCount = Math.max(...guessCounts);
+console.log(maxGuessCount);
 
-  const resetGame = () => {
-    guessCount = 1;
-    startTime = Date.now();
-    const resetParas = document.querySelectorAll('.resultParas p');
-    for (const resetPara of resetParas) {
-      resetPara.textContent = '';
-    }
-
-    timeField.textContent = '';
-
-    resetButton.parentNode.removeChild(resetButton);
-    guessField.disabled = false;
-    guessSubmit.disabled = false;
-    guessField.value = '';
-    guessField.focus();
-    lastResult.style.backgroundColor = 'white';
-    randomNumber = Math.floor(Math.random() * max) + min;
-  };
-
-  const stopTimer = () => {
-    const stopTime = Date.now() - startTime;
-
-    if (guessCount === maxGuess)  {
-      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds!';
-    }
-    else {
-      timeField.textContent += 'Your time: ' + Math.floor(stopTime / 1000) + ' seconds! It took you ' + guessCount + ' guesses.';
-    }
-  };
