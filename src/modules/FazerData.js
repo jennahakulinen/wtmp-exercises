@@ -30,5 +30,5 @@ let coursesEn = parseDailyMenu(FazerLunchMenuEn, 0);;
 const getParsedMenu = (lang = 'fi') => {
   return (lang == 'fi') ? coursesFi : coursesEn;
 };
-
-export {getParsedMenu as getParsedMenuFazer};
+const FazerData = {parseDailyMenu, getParsedMenu};
+export default FazerData;

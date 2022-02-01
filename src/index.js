@@ -40,32 +40,32 @@ const renderMenu = (restaurant, menu) => {
  * @param {Array} courses
  * @returns {string} course
  */
-const pickRandomCourse = courses => {
-  const randomIndex = Math.floor(Math.random() * courses.length);
-  return courses[randomIndex];
-};
-const displayRandomCourse = () => {
-  alert('Sodexo: '+ pickRandomCourse(SodexoData.getDailyMenu(lang)) + '\n'+ 'Fazer: '+ pickRandomCourse(FazerData.getDailyMenu(lang)));
-};
+// const pickRandomCourse = courses => {
+//   const randomIndex = Math.floor(Math.random() * courses.length);
+//   return courses[randomIndex];
+// };
+// const displayRandomCourse = () => {
+//   alert('Sodexo: '+ pickRandomCourse(SodexoData.getDailyMenu(lang)) + '\n'+ 'Fazer: '+ pickRandomCourse(FazerData.getDailyMenu(lang)));
+// };
 
-const switchLanguage = () => {
-  if (lang === 'fi') {
-    lang = 'en';
-  } else {
-    lang = 'fi';
-  }
-  renderMenu('sodexo', SodexoData.getDailyMenu(lang));
-  renderMenu('fazer', FazerData.getDailyMenu(lang));
-};
+// const switchLanguage = () => {
+//   if (lang === 'fi') {
+//     lang = 'en';
+//   } else {
+//     lang = 'fi';
+//   }
+//   renderMenu('sodexo', SodexoData.getDailyMenu(lang));
+//   renderMenu('fazer', FazerData.getDailyMenu(lang));
+// };
 
-const renderSortedMenu = () => {
-  renderMenu('sodexo', sortCourses(SodexoData.getDailyMenu(lang)));
-  renderMenu('fazer', sortCourses(FazerData.getDailyMenu(lang)));
-};
+// const renderSortedMenu = () => {
+//   renderMenu('sodexo', sortCourses(SodexoData.getDailyMenu(lang)));
+//   renderMenu('fazer', sortCourses(FazerData.getDailyMenu(lang)));
+// };
 
 const init = () => {
   renderMenu('sodexo', SodexoData.getDailyMenu('fi'));
-  renderMenu('fazer', FazerData.getDailyMenu('fi'));
+  renderMenu('fazer', FazerData.getParsedMenu('fi'));
   document.querySelector('#switch-lang').addEventListener('click', switchLanguage);
   document.querySelector('#sort-menu').addEventListener('click', renderSortedMenu);
   document.querySelector('#pick-dish').addEventListener('click', displayRandomCourse);
