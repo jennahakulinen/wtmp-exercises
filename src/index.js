@@ -18,6 +18,21 @@ const gameCheatCode = (code) => {
 };
 gameCheatCode('hello');
 
+/* Tuntiesimerkki
+  const gameCheatCode = (code) => {
+    let keyHistory = [];
+    document.addEventListener('keydown', event => {
+      keyHistory.push(event.key);
+      if (keyHistory.length > code.length) {
+        keyHistory.shift();
+      }
+      if(keyHistory.join('') === code) {
+        alert('Cheat activated');
+      }
+    });
+    gameCheatCode('sana');
+*/
+
 /**
  * ii. Create a function that shows the x and y coordinates of mouse double-clicks on the page
  */
@@ -61,7 +76,35 @@ const hurryUp = () => {
 };
 hurryUp();
 
+/* Tuntiesimerkki
+const createHurryUpTimer = delay => {
+  const outputP = document.querySelector('#output');
+  setTimeout(() => {
+    outputP.textContent = 'Do something!';
+  }, delay * 1000);
+};
+createHurryUpTimer(5);
+*/
 
-// v. Create a timer that tells user to "hurry up" after 15 secs of idling (= not doing anything: mouse hasn't been moving, keyboard keys haven't been pressed...)
-//    the notification should appear on the web page
 
+/**
+ * v. Create a timer that tells user to "hurry up" after 15 secs of idling (= not doing anything: mouse hasn't been moving, keyboard keys haven't been pressed...)
+ *    the notification should appear on the web page
+ *
+ * Tuntiesimerkki
+    const createHurryUpTimerAdvanced = delay => {
+      const outputP = document.querySelector('#output');
+      let timer;
+        const resetTimer = event => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+          outputP.textContent = 'Do something!';
+          console.log('do something');
+        }, delay * 1000);
+      };
+      resetTimer();
+      document.addEventListener('mousemove', resetTimer);
+      document.addEventListener('touchstart', resetTimer);
+    };
+    createHurryUpTimerAdvanced(5);
+*/
