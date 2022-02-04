@@ -12,6 +12,7 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+// - Lunch menu with real data
 
 /**
  * Sorts an array alphapetically
